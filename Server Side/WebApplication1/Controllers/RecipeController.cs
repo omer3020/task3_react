@@ -24,7 +24,10 @@ namespace WebApplication1.Controllers
                 //return BadRequest(ex.Message);
                 return Content(HttpStatusCode.BadRequest, ex);
             }
+        
         }
+
+
 
         //public List<Recipe> Get(int num)
         //{

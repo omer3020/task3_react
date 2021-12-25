@@ -7,7 +7,6 @@ const apiUrl = 'http://localhost:65358/api/Recipe';
 export default function Recipes() {
     const [results, setResult] = useState([]);    
 
-
     fetch(apiUrl, {
         method: 'GET',
         headers: new Headers({
