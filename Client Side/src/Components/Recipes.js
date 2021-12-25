@@ -17,18 +17,15 @@ export default function Recipes() {
       })
         .then(
           (result) => {
-           console.log("fetch btnFetchGetStudents= ", result);
-           setResult([...results,result])
-        //    let Recipes = results.map(Recipe =>
-        //     <Recipe key = {results.id} img={results.image} name={results.name} cook={results.cookingMethod} time={results.time}/>);
+           console.log("fetch recipe = ", result);
+          //  setResult([])
+        //    let Recipes = results.map(recipe =>
+        //     <Recipe key = {recipe.id} img={recipe.image} name={recipe.name} cook={recipe.cookingMethod} time={recipe.time}/>);
           },
           (error) => {
             console.log("err post=", error);
           });
   
-         
-
-
           return (
             <div>
             {results}

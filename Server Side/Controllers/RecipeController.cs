@@ -10,11 +10,11 @@ namespace WebApplication1.Controllers
 {
     public class RecipeController : ApiController
     {
-
+        // GET api/Recipe - get all Recipes in DB
         public List<Recipe> Get()
         {
-            Recipe a = new Recipe();
-            return a.getRecipes();
+            Recipe recipe = new Recipe();
+            return recipe.getRecipes();
             
         }
     }

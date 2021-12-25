@@ -10,10 +10,18 @@ namespace WebApplication1.Models
 {
     public class Recipe
     {
+
+        public int id { get; set; }
+        public string name { get; set; }
+        public string image { get; set; }
+        public  string cookingMethod { get; set; }
+        public float time { get; set; }
+
+
         public Recipe()
         {
-
         }
+
         public Recipe(int id, string name, string image, string cookingMethod, float time)
         {
             this.id = id;
@@ -26,7 +34,7 @@ namespace WebApplication1.Models
         public List<Recipe> getRecipes()
         {
             
-            ///
+            
             SqlConnection con = null;
             List<Recipe> RecipesList = new List<Recipe>();
 
@@ -50,12 +58,12 @@ namespace WebApplication1.Models
                     s.time = (float)dr["time"];
                     RecipesList.Add(s);
                 }
-
+                //TODO: Print the return value
                 return RecipesList;
             }
             catch (Exception ex)
             {
-                // write to log
+                //write to log
                 throw (ex);
             }
             finally
@@ -68,6 +76,7 @@ namespace WebApplication1.Models
             }
 
         }
+
         public SqlConnection connect(String conString)
         {
             // read the connection string from the configuration file
@@ -76,10 +85,6 @@ namespace WebApplication1.Models
             con.Open();
             return con;
         }
-        public int id { get; set; }
-        public string name { get; set; }
-        public string image { get; set; }
-        public  string cookingMethod { get; set; }
-        public float time { get; set; }
+
     }
 }
