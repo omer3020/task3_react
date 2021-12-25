@@ -10,11 +10,17 @@ namespace WebApplication1.Models
 {
     public class Recipe
     {
+        public int id { get; set; }
+        public string name { get; set; }
+        public string image { get; set; }
+        public string cookingMethod { get; set; }
+        public double time { get; set; }
+
         public Recipe()
         {
 
         }
-        public Recipe(int id, string name, string image, string cookingMethod, float time)
+        public Recipe(int id, string name, string image, string cookingMethod, double time)
         {
             this.id = id;
             this.name = name;
@@ -45,7 +51,7 @@ namespace WebApplication1.Models
                     s.name = (string)dr["name"];
                     s.image = (string)dr["image"];
                     s.cookingMethod = (string)dr["cookingMethod"];
-                    s.time = (float)dr["time"];
+                    s.time = (double)dr["time"];
                     RecipesList.Add(s);
                 }
                 //TODO: Print result
@@ -74,10 +80,6 @@ namespace WebApplication1.Models
             con.Open();
             return con;
         }
-        public int id { get; set; }
-        public string name { get; set; }
-        public string image { get; set; }
-        public  string cookingMethod { get; set; }
-        public float time { get; set; }
+
     }
 }

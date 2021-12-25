@@ -15,12 +15,14 @@ export default function Recipes() {
           'Accept': 'application/json; charset=UTF-8'
         })
       })
+      .then(res => {
+        return res.json()
+      })
         .then(
           (result) => {
-           console.log("fetch recipe = ", result);
-          //  setResult([])
-        //    let Recipes = results.map(recipe =>
-        //     <Recipe key = {recipe.id} img={recipe.image} name={recipe.name} cook={recipe.cookingMethod} time={recipe.time}/>);
+           let recipes = result.map(recipe =>
+            <Recipe key = {recipe.id} img={recipe.image} name={recipe.name} cook={recipe.cookingMethod} time={recipe.time}/>);
+            setResult(recipes)
           },
           (error) => {
             console.log("err post=", error);
