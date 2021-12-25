@@ -10,12 +10,27 @@ namespace WebApplication1.Controllers
 {
     public class RecipeController : ApiController
     {
-
-        public List<Recipe> Get()
+        
+        public IHttpActionResult Get()
         {
-            Recipe a = new Recipe();
-            return a.getRecipes();
-            
+            try
+            {
+                Recipe recipe = new Recipe();
+                List<Recipe> list = recipe.getRecipes();
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                //return BadRequest(ex.Message);
+                return Content(HttpStatusCode.BadRequest, ex);
+            }
         }
+
+        //public List<Recipe> Get(int num)
+        //{
+        //    Recipe a = new Recipe();
+        //    Console.WriteLine("Get Recipe Controller");
+        //    return a.getRecipes();    
+        //}
     }
 }

@@ -1,6 +1,6 @@
 import Recipe from './Recipe';
 import React  , {useState} from 'react'
-const apiUrl = 'http://localhost:65358/api/Ingredients';
+const apiUrl = 'http://localhost:65358/api/Recipe';
 
 
 

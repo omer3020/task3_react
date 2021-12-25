@@ -25,8 +25,6 @@ namespace WebApplication1.Models
 
         public List<Recipe> getRecipes()
         {
-            
-            ///
             SqlConnection con = null;
             List<Recipe> RecipesList = new List<Recipe>();
 
@@ -50,7 +48,7 @@ namespace WebApplication1.Models
                     s.time = (float)dr["time"];
                     RecipesList.Add(s);
                 }
-
+                //TODO: Print result
                 return RecipesList;
             }
             catch (Exception ex)
