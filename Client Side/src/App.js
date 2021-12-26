@@ -7,13 +7,6 @@ import AddIngredient from './Components/AddIngredient.jsx';
 
 
 export default function App() {
-  function handleAddRecipe(){
-
-  }
-
-  function handleAddIngredient(){
-
-  }
   return (
     <>
       <div>

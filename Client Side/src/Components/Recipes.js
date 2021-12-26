@@ -1,5 +1,5 @@
 import Recipe from './Recipe';
-import React  , {useState} from 'react'
+import React  , {useState,useEffect} from 'react'
 const apiUrl = 'http://localhost:65358/api/Recipe';
 
 
@@ -7,7 +7,8 @@ const apiUrl = 'http://localhost:65358/api/Recipe';
 export default function Recipes() {
     const [results, setResult] = useState([]);    
 
-    fetch(apiUrl, {
+    function fetchFromDB(){
+      fetch(apiUrl, {
         method: 'GET',
         headers: new Headers({
           'Content-Type': 'application/json; charset=UTF-8',
@@ -26,6 +27,10 @@ export default function Recipes() {
           (error) => {
             console.log("err post=", error);
           });
+      }
+      useEffect(() => {
+        fetchFromDB()
+      });
   
           return (
             <div>

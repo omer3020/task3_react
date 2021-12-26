@@ -14,6 +14,12 @@ namespace WebApplication1.Models
         {
 
         }
+        public Ingredient(string name, int calories, string image)
+        {
+            this.name = name;
+            this.calories = calories;
+            this.image = image;
+        }
         public Ingredient(int id, string name, int calories, string image)
         {
             this.id = id;
@@ -40,7 +46,7 @@ namespace WebApplication1.Models
                 SqlCommand cmd = new SqlCommand(CommandText, con);
                 cmd.Parameters.AddWithValue("@name", temp.name);
                 cmd.Parameters.AddWithValue("@calories", temp.calories);
-                cmd.Parameters.AddWithValue("@image", temp.image);
+                cmd.Parameters.AddWithValue("@img", temp.image);
 
                 return cmd;
             }
@@ -48,12 +54,9 @@ namespace WebApplication1.Models
         }
 
 
-            public int addNewIngredient(Ingredient ingredient)
+            public int addNewIngredient()
         {
-            if (ingredient == null)
-            {
-                return 0;
-            }
+            
             SqlCommand sendCmd = new SqlCommand();
             SqlConnection con = new SqlConnection();
 
@@ -67,7 +70,7 @@ namespace WebApplication1.Models
                 throw (ex);
             }
 
-            sendCmd = BuildInsertCommand(ingredient, con);      // helper method to build the insert string
+            sendCmd = BuildInsertCommand(this, con);      // helper method to build the insert string
 
             try
             {

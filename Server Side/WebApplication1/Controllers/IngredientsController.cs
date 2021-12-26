@@ -28,13 +28,13 @@ namespace WebApplication1.Controllers
             }
 
         }
-
-        public IHttpActionResult Post([FromBody] Ingredient newIngredient)
+        //GET: /api/Ingredients/name/url/cal - add new Ingredient
+        public IHttpActionResult Post(string name,string url,int cal)
         {
             try
             {
-                Ingredient ingredient = new Ingredient();
-                ingredient.addNewIngredient(newIngredient);
+                Ingredient newIngredient = new Ingredient(name,cal,url);
+                newIngredient.addNewIngredient();
                 return Created(new Uri(Request.RequestUri.AbsoluteUri + newIngredient.id), newIngredient);
             }
             catch (Exception ex)
