@@ -48,11 +48,11 @@ namespace WebApplication1.Models
         }
 
 
-            public void addNewIngredient(Ingredient ingredient)
+            public int addNewIngredient(Ingredient ingredient)
         {
             if (ingredient == null)
             {
-                return;
+                return 0;
             }
             SqlCommand sendCmd = new SqlCommand();
             SqlConnection con = new SqlConnection();
@@ -67,7 +67,7 @@ namespace WebApplication1.Models
                 throw (ex);
             }
 
-            sendCmd = BuildInsertCommand(obj, con);      // helper method to build the insert string
+            sendCmd = BuildInsertCommand(ingredient, con);      // helper method to build the insert string
 
             try
             {
