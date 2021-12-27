@@ -17,8 +17,8 @@ export default function RecipeTextFields(props) {
       alert('you have to choose at least 1 ingrident')
       return
     }
-    console.log(props.array)
-    console.log('sss')
+    // console.log(props.array)
+    // console.log('sss')
     let apiUrl = `http://localhost:65358/api/Recipe?name=${nameRef.current.value}&image=${imgRef.current.value}&cookingMethod=${cookmethodRef.current.value}&time=${cooktimeRef.current.value}&ingredients=${props.array}`
     
     fetch(apiUrl, {

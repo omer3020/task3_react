@@ -2,8 +2,13 @@ import Recipe from './Recipe';
 import React  , {useState,useEffect} from 'react'
 const apiUrl = 'http://localhost:65358/api/Recipe';
 
-export default function Recipes() {
+export default function Recipes(props) {
     const [results, setResult] = useState([]);    
+
+  function fetchRecipeIngrdients(){
+    
+  }
+
 
     function fetchFromDB(){
       fetch(apiUrl, {
@@ -29,6 +34,7 @@ export default function Recipes() {
 
       useEffect(() => {
         fetchFromDB()
+        console.log(props)
       },[]);
   
           return (

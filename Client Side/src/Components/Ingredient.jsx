@@ -16,9 +16,9 @@ export default function Ingredient(props) {
 
     }
 
-    useEffect(() => {
-      props.callback(-1,props)
-    },[]);
+    // useEffect(() => {
+    //   // props.callback(-1,props)
+    // },[]);
     return (
         
         <Card sx={{ maxWidth: 200 }}>
