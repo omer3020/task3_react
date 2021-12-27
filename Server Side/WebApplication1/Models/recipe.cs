@@ -36,6 +36,43 @@ namespace WebApplication1.Models
             this.cookingMethod = cookingMethod;
             this.time = time;
         }
+        public List<int> getIngredients(int id)
+        {
+            SqlConnection con = null;
+            List<int> ingList = new List<int>();
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT ingredientId from ingredientsInRecipes WHERE recipeId=" + id;
+
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {   // Read till the end of the data into a row                  
+                    ingList.Add((int)dr["ingredientId"]);
+                }
+                //TODO: Print result
+                return ingList;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+
+            }
+        }
         public int addIngredientsToRecipe(int[] ingredient)
         {
             SqlCommand sendCmd = new SqlCommand();

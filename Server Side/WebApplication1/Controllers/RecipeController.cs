@@ -46,9 +46,24 @@ namespace WebApplication1.Controllers
             }
         
         }
+        public IHttpActionResult Getid(int id)
+        {
+            try
+            {
+                Recipe recipe = new Recipe();
+                List<int> list = recipe.getIngredients(id);
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                //return BadRequest(ex.Message);
+                return Content(HttpStatusCode.BadRequest, ex);
+            }
+
+        }
 
 
 
-       
+
     }
 }
