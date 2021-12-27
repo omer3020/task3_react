@@ -3,14 +3,14 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-export default function IngredientTextFields() {
+export default function RecipeTextFields() {
 
   const nameRef = useRef('') //creating a refernce for TextField Component  
   const ingRef = useRef('')
   const calRef = useRef('')
 
   const postIngredient = () => {
-    let apiUrl = `http://localhost:65358/api/Ingredients?name=${nameRef.current.value}&url=${ingRef.current.value}&cal=${calRef.current.value}`
+    let apiUrl = `http://localhost:65358/api/Recipe?name=${nameRef.current.value}&url=${ingRef.current.value}&cal=${calRef.current.value}`
     
     fetch(apiUrl, {
       method: 'POST',
@@ -41,27 +41,29 @@ export default function IngredientTextFields() {
           required
           inputRef={nameRef}
           id="outlined-required"
-          label="Ingredient name:"
+          label="Recipe name:"
           defaultValue=""
         />
         <TextField
           inputRef={ingRef}
           id="outlined-disabled"
-          label="Ingredient Image (url):"
+          label="Recipe cooking method:"
           defaultValue=""
         />
-        <TextField
-          inputRef={calRef}
-          id="outlined-number"
-          label="Calories"
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
+                <TextField
+          inputRef={ingRef}
+          id="outlined-disabled"
+          label="Recipe cooking time:"
+          defaultValue=""
         />
-
-<Button onClick={postIngredient} variant="contained" type="submit">
-        Add Ingredient
+                <TextField
+          inputRef={ingRef}
+          id="outlined-disabled"
+          label="Recipe Image (url):"
+          defaultValue=""
+        />
+            <Button onClick={postIngredient} variant="contained" type="submit">
+        Add Recipe
       </Button>
       <Button variant="outlined" size="medium">
         Clear

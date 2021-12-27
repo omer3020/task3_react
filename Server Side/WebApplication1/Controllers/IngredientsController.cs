@@ -28,7 +28,7 @@ namespace WebApplication1.Controllers
             }
 
         }
-        //GET: /api/Ingredients/name/url/cal - add new Ingredient
+        //POST: /api/Ingredients/name/url/cal - add new Ingredient
         public IHttpActionResult Post(string name,string url,int cal)
         {
             try
