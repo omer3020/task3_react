@@ -2,8 +2,6 @@ import Recipe from './Recipe';
 import React  , {useState,useEffect} from 'react'
 const apiUrl = 'http://localhost:65358/api/Recipe';
 
-
-
 export default function Recipes() {
     const [results, setResult] = useState([]);    
 
@@ -27,7 +25,8 @@ export default function Recipes() {
           (error) => {
             console.log("err post=", error);
           });
-      }
+    }
+
       useEffect(() => {
         fetchFromDB()
       });
@@ -37,6 +36,4 @@ export default function Recipes() {
             {results}
             </div>
          )
-
     }
-

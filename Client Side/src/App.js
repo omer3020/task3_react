@@ -5,7 +5,6 @@ import { Routes, Route } from 'react-router-dom';
 import EHeader from './Components/EHeader';
 import AddIngredient from './Components/AddIngredient.jsx';
 
-
 export default function App() {
   return (
     <>
