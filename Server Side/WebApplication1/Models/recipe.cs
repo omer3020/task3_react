@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.Configuration;
+
+
+
 
 namespace WebApplication1.Models
 {
@@ -20,6 +21,13 @@ namespace WebApplication1.Models
         {
 
         }
+        public Recipe( string name, string image, string cookingMethod, double time)
+        {
+            this.name = name;
+            this.image = image;
+            this.cookingMethod = cookingMethod;
+            this.time = time;
+        }
         public Recipe(int id, string name, string image, string cookingMethod, double time)
         {
             this.id = id;
@@ -28,7 +36,96 @@ namespace WebApplication1.Models
             this.cookingMethod = cookingMethod;
             this.time = time;
         }
+        public int addIngredientsToRecipe(int[] ingredient)
+        {
+            SqlCommand sendCmd = new SqlCommand();
+            SqlConnection con = new SqlConnection();
 
+
+
+            foreach (int item in ingredient)
+            {
+                try
+                {
+                    con = connect("DBConnectionString"); // create the connection
+                }
+                catch (Exception ex)
+                {
+                    // write to log
+                    throw (ex);
+                }
+                sendCmd = BuildInsertCommand(item, con);      // helper method to build the insert string
+
+                try
+                {
+                    int numEffected = sendCmd.ExecuteNonQuery(); // execute the command
+                    return numEffected;
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 2627)
+                    {
+                        return 0;
+                    }
+                    else throw;
+                }
+                finally
+                {
+                    if (con != null)
+                    {
+                        // close the db connection
+                        con.Close();
+
+                    }
+                }
+
+            }
+            return 0;
+
+
+        }
+        public int addNewRecipe()
+        {
+            SqlCommand sendCmd = new SqlCommand();
+            SqlConnection con = new SqlConnection();
+
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            sendCmd = BuildInsertCommand(this, con);      // helper method to build the insert string
+
+            try
+            {
+                int numEffected = sendCmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627)
+                {
+                    return 0;
+                }
+                else throw;
+            }
+
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+
+                }
+            }
+
+        }
         public List<Recipe> getRecipes()
         {
             SqlConnection con = null;
@@ -81,5 +178,32 @@ namespace WebApplication1.Models
             return con;
         }
 
+        private SqlCommand BuildInsertCommand(Object Obj, SqlConnection con)
+        {
+
+            if (Obj is Recipe)
+            {
+                Recipe temp = (Recipe)Obj;
+                // use a string builder to create the dynamic string
+                string sql_insert = "VALUES (@name,@image,@cookingMethod,@time)";
+                string prefix = "INSERT INTO recipes (name, image,cookingMethod,time)";
+                string CommandText = prefix + sql_insert;
+                SqlCommand cmd = new SqlCommand(CommandText, con);
+                cmd.Parameters.AddWithValue("@name", temp.name);
+                cmd.Parameters.AddWithValue("@cookingMethod", temp.cookingMethod);
+                cmd.Parameters.AddWithValue("@image", temp.image);
+                cmd.Parameters.AddWithValue("@time", temp.time);
+                return cmd;
+            }
+
+            else
+            {                
+                int number = (int)Obj;
+                String selectSTR = "INSERT INTO ingredientsInRecipes (recipeId, ingredientId)" +
+                                   "VALUES((select id from recipes where name = " + this.name + "),"+number+"); ";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+                return cmd;
+            }
+        }
     }
 }

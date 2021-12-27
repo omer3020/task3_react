@@ -2,15 +2,24 @@ import React, {useState,useEffect, useRef} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import GetIngredient from './GetIngredient';
 
-export default function RecipeTextFields() {
+export default function RecipeTextFields(props) {
 
   const nameRef = useRef('') //creating a refernce for TextField Component  
-  const ingRef = useRef('')
-  const calRef = useRef('')
+  const imgRef = useRef('')
+  const cookmethodRef = useRef('')
+  const cooktimeRef = useRef('')
 
   const postIngredient = () => {
-    let apiUrl = `http://localhost:65358/api/Recipe?name=${nameRef.current.value}&url=${ingRef.current.value}&cal=${calRef.current.value}`
+    if(props.array.length == 0 || nameRef == '')
+    {
+      alert('you have to choose at least 1 ingrident')
+      return
+    }
+    console.log(props.array)
+    console.log('sss')
+    let apiUrl = `http://localhost:65358/api/Recipe?name=${nameRef.current.value}&image=${imgRef.current.value}&cookingMethod=${cookmethodRef.current.value}&time=${cooktimeRef.current.value}&ingredients=${props.array}`
     
     fetch(apiUrl, {
       method: 'POST',
@@ -25,7 +34,7 @@ export default function RecipeTextFields() {
       (error) => {
           console.log("err post=", error);
         });
-  }
+   }
 
   return (
     <Box
@@ -45,24 +54,24 @@ export default function RecipeTextFields() {
           defaultValue=""
         />
         <TextField
-          inputRef={ingRef}
+          inputRef={cookmethodRef}
           id="outlined-disabled"
           label="Recipe cooking method:"
           defaultValue=""
         />
                 <TextField
-          inputRef={ingRef}
+          inputRef={cooktimeRef}
           id="outlined-disabled"
           label="Recipe cooking time:"
           defaultValue=""
         />
                 <TextField
-          inputRef={ingRef}
+          inputRef={imgRef}
           id="outlined-disabled"
           label="Recipe Image (url):"
           defaultValue=""
         />
-            <Button onClick={postIngredient} variant="contained" type="submit">
+            <Button onClick={postIngredient} variant="contained">
         Add Recipe
       </Button>
       <Button variant="outlined" size="medium">
@@ -71,5 +80,6 @@ export default function RecipeTextFields() {
       </div>
 
     </Box>
+    
   );
 }

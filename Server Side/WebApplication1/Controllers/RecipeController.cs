@@ -4,13 +4,28 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class RecipeController : ApiController
     {
-        
+        public IHttpActionResult PostRecipe(string name, string image, string cookingMethod, double time,[FromUri] int[] ingredients)
+        {
+            var recipe = new Recipe();
+            try
+            {
+                Recipe newRecipe = new Recipe(name, image, cookingMethod, time);
+                newRecipe.addNewRecipe();
+                newRecipe.addIngredientsToRecipe(ingredients);
+                return Created(new Uri(Request.RequestUri.AbsoluteUri + newRecipe.id), newRecipe);
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.BadRequest, ex);
+            }
+        }
         public IHttpActionResult Get()
         {
             try

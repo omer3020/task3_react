@@ -1,12 +1,15 @@
-import React  , {useState,useEffect,useRef} from 'react'
+import React  , {useState,useEffect} from 'react'
 import Ingredient from './Ingredient';
 import './App.css'
 
 const apiUrl = 'http://localhost:65358/api/Ingredients';
 
 
-export default function GetIngredient() {
+export default function GetIngredient(props) {
     const [resultss, setResults] = useState([]);    
+    function callback(e){
+      props.callback2(e)
+    }
 
     function GetIngredientFromDB(){
         fetch(apiUrl, {
@@ -22,7 +25,7 @@ export default function GetIngredient() {
           .then(
             (result) => {
              let ingredients = result.map(ingredient =>
-              <Ingredient key = {ingredient.id} id = {ingredient.id} img={ingredient.image} name={ingredient.name} cal={ingredient.calories}/>);
+              <Ingredient callback ={callback} key = {ingredient.id} id = {ingredient.id} img={ingredient.image} name={ingredient.name} cal={ingredient.calories}/>);
               setResults(ingredients)
             },
             (error) => {

@@ -54,7 +54,7 @@ namespace WebApplication1.Models
         }
 
 
-            public int addNewIngredient()
+        public int addNewIngredient()
         {
             
             SqlCommand sendCmd = new SqlCommand();

@@ -12,8 +12,8 @@ export default function Ingredient(props) {
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
     function handleOnChange(e){
-      if(e)
-      console.log(e.target.id)
+      props.callback(e.target.id)
+
     }
     return (
         <div className='ingredient_card'>
