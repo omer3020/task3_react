@@ -7,6 +7,10 @@ import AddIngredient from './Components/AddIngredient.jsx';
 import './Components/App.css'
 
 export default function App() {
+  function callback3(props2){
+    console.log(props2)
+    console.log('app.js')
+  }
   return (
     <>
       <div>
@@ -15,7 +19,7 @@ export default function App() {
       
       <Routes>
           {/* <Route path="/" element={<Recipes />} /> */}
-          <Route path="/addrecipe" element={<AddRecipe />} />
+          <Route path="/addrecipe" element={<AddRecipe callback3={callback3}/>} />
           <Route path="/addingredient" element={<AddIngredient />} />
       </Routes>
       <hr  style={{

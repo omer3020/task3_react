@@ -6,19 +6,24 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using WebApplication1.Models;
+using System.Threading;
+
 
 namespace WebApplication1.Controllers
 {
     public class RecipeController : ApiController
     {
-        public IHttpActionResult PostRecipe(string name, string image, string cookingMethod, double time,[FromUri] int[] ingredients)
+        public IHttpActionResult PostRecipe(string name, string image, string cookingMethod, double time,string ingredients)
         {
-            var recipe = new Recipe();
+            string[] array = ingredients.Split(',');
+            int[] new_array = Array.ConvertAll(array, s => int.Parse(s));
+
             try
             {
                 Recipe newRecipe = new Recipe(name, image, cookingMethod, time);
                 newRecipe.addNewRecipe();
-                newRecipe.addIngredientsToRecipe(ingredients);
+                Thread.Sleep(1000); //will sleep for 5 sec
+                newRecipe.addIngredientsToRecipe(new_array);
                 return Created(new Uri(Request.RequestUri.AbsoluteUri + newRecipe.id), newRecipe);
             }
             catch (Exception ex)
@@ -44,11 +49,6 @@ namespace WebApplication1.Controllers
 
 
 
-        //public List<Recipe> Get(int num)
-        //{
-        //    Recipe a = new Recipe();
-        //    Console.WriteLine("Get Recipe Controller");
-        //    return a.getRecipes();    
-        //}
+       
     }
 }

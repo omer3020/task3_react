@@ -7,8 +7,8 @@ const apiUrl = 'http://localhost:65358/api/Ingredients';
 
 export default function GetIngredient(props) {
     const [resultss, setResults] = useState([]);    
-    function callback(e){
-      props.callback2(e)
+    function callback(e,props2){
+      props.callback2(e,props2)
     }
 
     function GetIngredientFromDB(){

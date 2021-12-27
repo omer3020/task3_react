@@ -7,11 +7,25 @@
     
   }
 
+  .container_recipe {
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;   
+  }
+
   .ingredient_card{
       margin: 10px;
   }
 
   .container_fields{
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container_cards{
     display: flex;
     flex-direction: column; 
     justify-content: flex-start;

@@ -2,9 +2,13 @@ import React ,{useState,useEffect} from 'react'
 import GetIngredient from './GetIngredient'
 import RecipeTextFields from './RecipeTextFields'
 
-export default function AddRecipe() {
+export default function AddRecipe(props) {
     var ingridents = []
-    function callback2(e){
+    function callback2(e,props2){
+        if(e == -1){
+            props.callback3(props2)
+            return
+        }
         if(ingridents.includes(e)){
             const index = ingridents.indexOf(e); 
             ingridents.splice(index, 1);
@@ -12,6 +16,7 @@ export default function AddRecipe() {
         else{
             ingridents.push(e)
         }
+        props.callback3(props2)
     }
 
     useEffect(() => {
@@ -23,7 +28,7 @@ export default function AddRecipe() {
             // TODO: post Recipe 
         <div>
             <RecipeTextFields array = {ingridents}/>
-            <h1>Choose ingridents</h1>
+            <h1>Choose ingridents</h1>   
             <GetIngredient callback2={callback2}/>
         </div>
     )

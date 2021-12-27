@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useEffect}from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -12,18 +12,22 @@ export default function Ingredient(props) {
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
     function handleOnChange(e){
-      props.callback(e.target.id)
+      props.callback(e.target.id,props)
 
     }
+
+    useEffect(() => {
+      props.callback(-1,props)
+    },[]);
     return (
-        <div className='ingredient_card'>
+        
         <Card sx={{ maxWidth: 200 }}>
         <CardActionArea>
           <CardMedia
             component="img"
             height="140"
             image={props.img}
-            alt="green iguana"
+            alt=""
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -36,6 +40,6 @@ export default function Ingredient(props) {
           </CardContent>
         </CardActionArea>
       </Card>
-      </div>
+      
     );   
 }

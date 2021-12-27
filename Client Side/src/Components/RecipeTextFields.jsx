@@ -29,6 +29,7 @@ export default function RecipeTextFields(props) {
       })
     })
     .then(res => {
+      window.location.href="/AddRecipe"
       return res
     },
       (error) => {

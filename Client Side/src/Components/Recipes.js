@@ -33,7 +33,9 @@ export default function Recipes() {
   
           return (
             <div>
+              <div className='container'>
             {results}
+            </div>
             </div>
          )
     }

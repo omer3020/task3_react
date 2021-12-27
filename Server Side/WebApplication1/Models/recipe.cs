@@ -41,25 +41,24 @@ namespace WebApplication1.Models
             SqlCommand sendCmd = new SqlCommand();
             SqlConnection con = new SqlConnection();
 
-
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
 
             foreach (int item in ingredient)
             {
-                try
-                {
-                    con = connect("DBConnectionString"); // create the connection
-                }
-                catch (Exception ex)
-                {
-                    // write to log
-                    throw (ex);
-                }
+                
                 sendCmd = BuildInsertCommand(item, con);      // helper method to build the insert string
 
                 try
                 {
                     int numEffected = sendCmd.ExecuteNonQuery(); // execute the command
-                    return numEffected;
                 }
                 catch (SqlException ex)
                 {
@@ -69,18 +68,14 @@ namespace WebApplication1.Models
                     }
                     else throw;
                 }
-                finally
-                {
-                    if (con != null)
-                    {
-                        // close the db connection
-                        con.Close();
-
-                    }
-                }
 
             }
-            return 0;
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+                return 0;
 
 
         }
@@ -200,7 +195,7 @@ namespace WebApplication1.Models
             {                
                 int number = (int)Obj;
                 String selectSTR = "INSERT INTO ingredientsInRecipes (recipeId, ingredientId)" +
-                                   "VALUES((select id from recipes where name = " + this.name + "),"+number+"); ";
+                                   "VALUES((select id from recipes where name = '" + this.name + "'),"+number+"); ";
                 SqlCommand cmd = new SqlCommand(selectSTR, con);
                 return cmd;
             }
