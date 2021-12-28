@@ -54,7 +54,6 @@ function GetIngredientFromDB(){
       (result) => {
         let ingredient = result.map(function(ingredient){
           if(recipeIngrdients.includes(ingredient.id)){
-            console.log(ingredient.id);
             return <ShowIngredient key = {ingredient.id} id = {ingredient.id} img={ingredient.image} name={ingredient.name} cal={ingredient.calories}/>;
           }});
           setIngredient(ingredient)
@@ -81,7 +80,7 @@ function GetIngredientFromDB(){
     // console.log('fetchRecipeIngrdients(props.id)')
     // fetchRecipeIngrdients(props.id)
     // console.log(recipeIngrdients)
-  },[ingredients]);
+  },[]);
 
 
     return (
@@ -107,9 +106,12 @@ function GetIngredientFromDB(){
         </CardContent>
       </CardActionArea>
       <div>
+
             <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
               {ingredients}
             </List>
+
+
               </div>
     </Card>
     </div>
