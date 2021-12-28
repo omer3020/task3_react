@@ -5,6 +5,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Ingredient from './Ingredient';
+import List from '@mui/material/List';
+import ShowIngredient from './ShowIngredient';
 
 export default function Recipe(props) {
 
@@ -52,7 +54,7 @@ function GetIngredientFromDB(){
         let ingredient = result.map(function(ingredient){
           if(recipeIngrdients.includes(ingredient.id)){
             console.log(ingredient.id);
-            return <Ingredient key = {ingredient.id} id = {ingredient.id} img={ingredient.image} name={ingredient.name} cal={ingredient.calories}/>;
+            return <ShowIngredient key = {ingredient.id} id = {ingredient.id} img={ingredient.image} name={ingredient.name} cal={ingredient.calories}/>;
           }});
           setIngredient(ingredient)
       //  let ingredients = result.map(ingredient =>
@@ -101,11 +103,16 @@ function GetIngredientFromDB(){
             <div>Cooking Method: {props.cook}</div>
             <div>Cooking Time : {props.time}</div>
             {/* <div>recipeIngrdients {recipeIngrdients}</div> */}
-            <div>ingredients {ingredients}</div>
+
 
           </Typography>
         </CardContent>
       </CardActionArea>
+      <div>
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+              {ingredients}
+            </List>
+              </div>
     </Card>
     </div>
     )

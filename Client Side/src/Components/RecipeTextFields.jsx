@@ -12,7 +12,7 @@ export default function RecipeTextFields(props) {
   const cooktimeRef = useRef('')
 
   const postIngredient = () => {
-    if(props.array.length == 0 || nameRef == '')
+    if(props.array.length == 0 || nameRef.current.value == '')
     {
       alert('you have to choose at least 1 ingrident')
       return
