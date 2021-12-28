@@ -1,8 +1,7 @@
-import React, {useState,useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import GetIngredient from './GetIngredient';
 
 export default function RecipeTextFields(props) {
 
@@ -12,7 +11,7 @@ export default function RecipeTextFields(props) {
   const cooktimeRef = useRef('')
 
   const postIngredient = () => {
-    if(props.array.length == 0 || nameRef == '')
+    if(props.array.length === 0 || nameRef.current.value === '')
     {
       alert('you have to choose at least 1 ingrident')
       return
