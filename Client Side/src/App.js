@@ -1,4 +1,4 @@
-import React , {useState,useEffect} from 'react'
+import React , {useState,useEffect,useLayoutEffect} from 'react'
 import Recipes from './Components/Recipes'
 import AddRecipe from './Components/AddRecipe'
 import { Routes, Route } from 'react-router-dom';
@@ -28,9 +28,9 @@ export default function App() {
     })
       .then(
         (result) => {
-        //  let ingredients = result.map(ingredient =>
-          // <Ingredient callback ={callback} key = {ingredient.id} id = {ingredient.id} img={ingredient.image} name={ingredient.name} cal={ingredient.calories}/>);
+          // console.log(result)
           setResults(result)
+        
         },
         (error) => {
           console.log("err post=", error);
@@ -39,7 +39,7 @@ export default function App() {
 
     useEffect(() => {
         GetIngredientFromDB()
-    },[]); 
+    },[results] ); 
   return (
     <>
       <div>
