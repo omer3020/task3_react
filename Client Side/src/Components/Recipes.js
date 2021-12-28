@@ -1,36 +1,16 @@
 import Recipe from './Recipe';
 import React  , {useState,useEffect} from 'react'
+const apiUrl = 'http://localhost:65358/api/Recipe';
 
 export default function Recipes(props) {
     const [results, setResult] = useState([]);    
-//TODO:we have in props all the Ingrdients
 
-
-
-  function fetchRecipeIngrdients(id){
-    let apiUrl = `http://localhost:65358/api/Recipe?id=${id}`;
-
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: new Headers({
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json; charset=UTF-8'
-      })
-    })
-    .then(res => {
-      return res.json()
-    })
-    .then(result => {
-      return result
-    },
-        (error) => {
-          console.log("err post=", error);
-        });
+  function fetchRecipeIngrdients(){
+    
   }
 
 
     function fetchFromDB(){
-      let apiUrl = "http://localhost:65358/api/Recipe"
       fetch(apiUrl, {
         method: 'GET',
         headers: new Headers({
@@ -44,7 +24,11 @@ export default function Recipes(props) {
         .then(
           (result) => {
            let recipes = result.map(recipe =>
+<<<<<<< HEAD
             <Recipe key = {recipe.id} realing={props.result} img={recipe.image} name={recipe.name} cook={recipe.cookingMethod} time={recipe.time}/>);
+=======
+            <Recipe key = {recipe.id} img={recipe.image} name={recipe.name} cook={recipe.cookingMethod} time={recipe.time}/>);
+>>>>>>> parent of a1c02f6 (done day 2)
             setResult(recipes)
           },
           (error) => {
@@ -52,10 +36,17 @@ export default function Recipes(props) {
           });
     }
 
+<<<<<<< HEAD
       // useEffect(() => {
       //   fetchFromDB()
       //   // console.log(props)
       // },[]);
+=======
+      useEffect(() => {
+        fetchFromDB()
+        console.log(props)
+      },[]);
+>>>>>>> parent of a1c02f6 (done day 2)
   
           return (
             <div>
