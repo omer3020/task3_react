@@ -11,31 +11,31 @@ export default function GetIngredient(props) {
     //   props.callback2(e,props2)
     // }
 
-    // function GetIngredientFromDB(){
-    //     fetch(apiUrl, {
-    //       method: 'GET',
-    //       headers: new Headers({
-    //         'Content-Type': 'application/json; charset=UTF-8',
-    //         'Accept': 'application/json; charset=UTF-8'
-    //       })
-    //     })
-    //     .then(res => {
-    //       return res.json()
-    //     })
-    //       .then(
-    //         (result) => {
-    //          let ingredients = result.map(ingredient =>
-    //           <Ingredient key = {ingredient.id} id = {ingredient.id} img={ingredient.image} name={ingredient.name} cal={ingredient.calories}/>);
-    //           setResults(ingredients)
-    //         },
-    //         (error) => {
-    //           console.log("err post=", error);
-    //         });
-    //   }
+    function GetIngredientFromDB(){
+        fetch(apiUrl, {
+          method: 'GET',
+          headers: new Headers({
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Accept': 'application/json; charset=UTF-8'
+          })
+        })
+        .then(res => {
+          return res.json()
+        })
+          .then(
+            (result) => {
+             let ingredients = result.map(ingredient =>
+              <Ingredient key = {ingredient.id} id = {ingredient.id} img={ingredient.image} name={ingredient.name} cal={ingredient.calories}/>);
+              setResults(ingredients)
+            },
+            (error) => {
+              console.log("err post=", error);
+            });
+      }
   
-        // useEffect(() => {
-        //     GetIngredientFromDB()
-        // },[]);
+        useEffect(() => {
+            GetIngredientFromDB()
+        },[]);
 
     return (
         <div>
