@@ -8,7 +8,7 @@ export default function IngredientTextFields() {
   const nameRef = useRef('') //creating a refernce for TextField Component  
   const ingRef = useRef('')
   const calRef = useRef('')
-
+// https://proj.ruppin.ac.il/bgroup63/test2/react_task_3/Server Side/api/Ingredients
   const postIngredient = () => {
     let apiUrl = `http://localhost:65358/api/Ingredients?name=${nameRef.current.value}&url=${ingRef.current.value}&cal=${calRef.current.value}`
     

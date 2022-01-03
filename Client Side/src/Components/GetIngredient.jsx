@@ -1,7 +1,7 @@
 import React  , {useState,useEffect} from 'react'
 import Ingredient from './Ingredient';
 import './App.css'
-
+// https://proj.ruppin.ac.il/bgroup63/test2/react_task_3/Server Side/api/Ingredients
 const apiUrl = 'http://localhost:65358/api/Ingredients';
 
 

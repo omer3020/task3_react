@@ -73,14 +73,13 @@ function GetIngredientFromDB(){
 
   useEffect(() => {
     fetchRecipeIngrdients(props.id)
-    // console.log('ingredients')
-    GetIngredientFromDB()
-    // console.log(ingredients)
 
-    // console.log('fetchRecipeIngrdients(props.id)')
-    // fetchRecipeIngrdients(props.id)
-    // console.log(recipeIngrdients)
   },[]);
+  
+  useEffect(() => {
+    GetIngredientFromDB()
+
+  },[recipeIngrdients]);
 
 
     return (
@@ -106,6 +105,8 @@ function GetIngredientFromDB(){
         </CardContent>
       </CardActionArea>
       <div>
+
+
 
             <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
               {ingredients}
