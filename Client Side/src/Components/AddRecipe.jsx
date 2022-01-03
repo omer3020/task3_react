@@ -5,10 +5,10 @@ import RecipeTextFields from './RecipeTextFields'
 export default function AddRecipe(props) {
     var ingridents = []
     function callback2(e,props2){
-        if(e == -1){
-            props.callback3(props2)
-            return
-        }
+        // if(e == -1){
+        //     // props.callback3(props2)
+        //     return
+        // }
         if(ingridents.includes(e)){
             const index = ingridents.indexOf(e); 
             ingridents.splice(index, 1);
@@ -16,7 +16,7 @@ export default function AddRecipe(props) {
         else{
             ingridents.push(e)
         }
-        props.callback3(props2)
+        // props.callback3(props2)
     }
 
     useEffect(() => {
